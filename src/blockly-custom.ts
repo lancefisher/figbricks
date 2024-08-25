@@ -23,7 +23,7 @@ javascriptGenerator.forBlock['log'] = function(block) {
   const value_name = javascriptGenerator.valueToCode(block, 'NAME', Order.ATOMIC);
 
   // TODO: Assemble javascript into the code variable.
-  const code = 'console.log("test from blockly");';
+  const code = 'console.log(' + value_name + ');';
   return code;
 }
 
