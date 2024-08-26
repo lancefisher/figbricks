@@ -15,7 +15,6 @@ export default function () {
     //console.log('main.ts code:', code)
 
     eval(code)
-    //eval('console.log("test eval");')
   })
   showUI({ 
     height: 500, 

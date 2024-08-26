@@ -15,7 +15,7 @@ import { javascriptGenerator } from 'blockly/javascript';
 import { toolboxCategories } from './blockly-custom'
 import { InsertCodeHandler } from './types'
 
-//import styles from './styles.css'
+import styles from './styles.css'
 
 function Plugin() {
   // const handleInsertCodeButtonClick = useCallback(
@@ -29,14 +29,16 @@ function Plugin() {
   const initialXml =
   '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="text" x="70" y="30"><field name="TEXT"></field></block></xml>';
 
+  const [code, setCode] = useState('')
+
   const workspaceDidChange = useCallback((workspace: any) => {
-    const code = javascriptGenerator.workspaceToCode(workspace);
-    emit<InsertCodeHandler>('INSERT_CODE', code)
+    const generatedCode = javascriptGenerator.workspaceToCode(workspace)
+    setCode(generatedCode)
   }, [])
 
   const handleRunClick = useCallback(() => {
-    console.log('Run clicked')
-  }, [])
+    emit<InsertCodeHandler>('INSERT_CODE', code)
+  }, [code])
 
   const blocklyRef = useRef(null);
   const { workspace, xml } = useBlocklyWorkspace({
@@ -54,6 +56,15 @@ function Plugin() {
     onWorkspaceChange: workspaceDidChange,
   });
 
+
+  return (
+    <Container space="medium">
+      <Button onClick={handleRunClick}>Run</Button>
+      <VerticalSpace space="small" />
+      <div ref={blocklyRef} />
+    </Container>
+  )
+
   return (
     <div>
       <div>
@@ -61,7 +72,6 @@ function Plugin() {
       </div>
       <div ref={blocklyRef} />
     </div>
-
   )
 }
 
