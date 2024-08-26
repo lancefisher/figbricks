@@ -1,4 +1,16 @@
-# React Editor
+# Bricks for Figma
+
+This is a visual code editor for easily automating your Figma document.
+
+It's created with [Blockly](https://developers.google.com/blockly) and the [Figma Plugin API](https://www.figma.com/plugin-docs/).
+
+### Create a rectangle
+
+![Create a rectangle](create-a-rectangle.gif)
+
+### Or Create 5 rectangles
+
+![Create 5 rectangles](create-five-rectangles.gif)
 
 ## Development guide
 
