@@ -4,28 +4,32 @@ import {
   Button,
   Container,
   render,
-  VerticalSpace
+  VerticalSpace,
+  useWindowResize,
 } from '@create-figma-plugin/ui'
 import { emit } from '@create-figma-plugin/utilities'
 import { h, RefObject } from 'preact'
 import { useCallback, useEffect, useRef, useState } from 'preact/hooks'
 
+import * as Blockly from 'blockly/core';
 import { useBlocklyWorkspace } from 'react-blockly'
 import { javascriptGenerator } from 'blockly/javascript';
-import { toolboxCategories } from './blockly-custom'
+import { toolboxCategories } from './blockly-toolbox'
+
 import { InsertCodeHandler } from './types'
 
-import styles from './styles.css'
-
 function Plugin() {
-  // const handleInsertCodeButtonClick = useCallback(
-  //   function () {
-  //     console.log('todo')
-  //     //emit<InsertCodeHandler>('INSERT_CODE', code)
-  //   },
-  //   [code]
-  // )
 
+  function onWindowResize(windowSize: { width: number; height: number }) {
+    emit('RESIZE_WINDOW', windowSize)
+  }
+
+  useWindowResize(onWindowResize, {
+    minWidth: 120,
+    minHeight: 120,
+    maxWidth: 800,
+    maxHeight: 800
+  })
   const initialXml =
   '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="text" x="70" y="30"><field name="TEXT"></field></block></xml>';
 
@@ -56,23 +60,13 @@ function Plugin() {
     onWorkspaceChange: workspaceDidChange,
   });
 
-
   return (
     <Container space="medium">
       <Button onClick={handleRunClick}>Run</Button>
-      <VerticalSpace space="small" />
       <div ref={blocklyRef} />
     </Container>
   )
 
-  return (
-    <div>
-      <div>
-        <button onClick={handleRunClick}>Run</button>
-      </div>
-      <div ref={blocklyRef} />
-    </div>
-  )
 }
 
 export default render(Plugin)
