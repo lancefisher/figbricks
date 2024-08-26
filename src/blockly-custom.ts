@@ -19,7 +19,9 @@ const log = {
 Blockly.common.defineBlocks({ log: log })
 javascriptGenerator.forBlock['log'] = function(block) {
   const value_name = javascriptGenerator.valueToCode(block, 'NAME', Order.ATOMIC);
-  const code = 'console.log(' + value_name + ');';
+  const code = `
+  console.log(${value_name});
+  `;
   return code;
 }
 
@@ -60,18 +62,14 @@ javascriptGenerator.forBlock['createRect'] = function(block) {
   const value_w = javascriptGenerator.valueToCode(block, 'W', Order.ATOMIC);
   const value_h = javascriptGenerator.valueToCode(block, 'H', Order.ATOMIC);
   const value_fill = javascriptGenerator.valueToCode(block, 'FILL', Order.ATOMIC);
-
-  let code = ''
-  code += 'const rect = figma.createRectangle();\n'
-  code += 'rect.name = ' + value_name + ';\n'
-  code += 'rect.x = ' + value_x + ';\n'
-  code += 'rect.y = ' + value_y + ';\n'
-  code += `rect.resize(${value_w}, ${value_h});\n`
-  //code += 'rect.fills = [{type: "SOLID", color: {r: 1, g: 0.5, b: 0}, boundVariables: {}}];\n'
-  code += 'rect.fills = [figma.util.solidPaint(' + value_fill + ')];\n'
-
-  code += 'figma.currentPage.appendChild(rect);\n'
-  //code += 'nodes.push(rect);\n'
-  
+  let code = `
+  const rect = figma.createRectangle();
+  rect.name = ${value_name};
+  rect.x = ${value_x};
+  rect.y = ${value_y};
+  rect.resize(${value_w}, ${value_h});
+  rect.fills = [figma.util.solidPaint(${value_fill})];
+  figma.currentPage.appendChild(rect);
+  `;
   return code;
 }
