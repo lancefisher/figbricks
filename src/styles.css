@@ -8,3 +8,8 @@
   font-family: var(--font-family-code);
   font-size: var(--font-size-12);
 }
+
+/* thanks: https://github.com/nbudin/react-blockly/issues/75#issuecomment-1174154882 */
+.blocklyFlyoutScrollbar[display="none"] {
+  display: none;
+}

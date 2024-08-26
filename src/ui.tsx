@@ -16,6 +16,8 @@ import { useBlocklyWorkspace } from 'react-blockly'
 import { javascriptGenerator } from 'blockly/javascript';
 import { toolboxCategories } from './blockly-toolbox'
 
+import '!./styles.css'
+
 import { InsertCodeHandler } from './types'
 
 function Plugin() {
@@ -31,17 +33,20 @@ function Plugin() {
     maxHeight: 800
   })
   const initialXml =
-  '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="text" x="70" y="30"><field name="TEXT"></field></block></xml>';
+  '<xml xmlns="http://www.w3.org/1999/xhtml"></xml>';
 
   const [code, setCode] = useState('')
 
   const workspaceDidChange = useCallback((workspace: any) => {
+    //Blockly.svgResize(workspace);
+    console.log('workspaceDidChange', workspace)
+
     const generatedCode = javascriptGenerator.workspaceToCode(workspace)
     setCode(generatedCode)
   }, [])
 
   const handleRunClick = useCallback(() => {
-    console.log(Blockly.serialization.workspaces.save(Blockly.getMainWorkspace()))
+    //console.log(Blockly.serialization.workspaces.save(Blockly.getMainWorkspace()))
     emit<InsertCodeHandler>('INSERT_CODE', code)
   }, [code])
 
