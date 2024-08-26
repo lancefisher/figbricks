@@ -28,8 +28,7 @@ const createRect = {
   init: function() {
     this.appendValueInput('NAME')
     .setCheck('String')
-      .appendField('Create Rect:')
-      .appendField('Name');
+      .appendField('Create Rect, named');
     this.appendValueInput('X')
       .appendField('X');
     this.appendValueInput('Y')
@@ -44,12 +43,12 @@ const createRect = {
     this.appendValueInput('FILL')
     .setCheck('String')
       .appendField('Fill');
-    this.setInputsInline(true)
+    this.setInputsInline(false)
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setTooltip('Creates a rectangle');
     this.setHelpUrl('');
-    this.setColour(0);
+    this.setColour('#1ABCFE');
   }
 };
 Blockly.common.defineBlocks({createRect: createRect});
@@ -68,8 +67,9 @@ javascriptGenerator.forBlock['createRect'] = function(block) {
   code += 'rect.x = ' + value_x + ';\n'
   code += 'rect.y = ' + value_y + ';\n'
   code += `rect.resize(${value_w}, ${value_h});\n`
-  //todo: fill
-  code += 'rect.fills = [{type: "SOLID", color: {r: 1, g: 0.5, b: 0}, boundVariables: {}}];\n'
+  //code += 'rect.fills = [{type: "SOLID", color: {r: 1, g: 0.5, b: 0}, boundVariables: {}}];\n'
+  code += 'rect.fills = [figma.util.solidPaint(' + value_fill + ')];\n'
+
   code += 'figma.currentPage.appendChild(rect);\n'
   //code += 'nodes.push(rect);\n'
   

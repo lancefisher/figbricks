@@ -23,8 +23,8 @@ export default function () {
     eval(code)
   })
   showUI({ 
-    height: 500, 
+    height: 530, 
     width: 640,
-    title: 'FigBlocks'
+    title: 'Bricks for Figma'
   })
 }

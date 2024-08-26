@@ -21,6 +21,7 @@ const toolboxCategories = {
     {
       kind: "category",
       name: "Text",
+      colour: "#5CA68D",
       contents: [
         { kind: "block", type: "text" },
         { kind: "block", type: "text_join" },
@@ -39,6 +40,7 @@ const toolboxCategories = {
     {
       kind: 'category',
       name: 'Math',
+      colour: '#5C68A6',
       contents: [
         { kind: 'block', type: 'math_number' },
         { kind: 'block', type: 'math_arithmetic' },
@@ -58,10 +60,40 @@ const toolboxCategories = {
     {
       kind: "category",
       name: "Loops",
+      colour: "#5CA65C",
       contents: [
         { kind: "block", type: "controls_repeat_ext" },
         { kind: "block", type: "controls_whileUntil" },
-        { kind: "block", type: "controls_for" },
+        { 
+          kind: "block", 
+          type: "controls_for",
+          inputs: {
+                "FROM": {
+                    "block": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 0
+                        }
+                    }
+                },
+                "TO": {
+                    "block": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 5
+                        }
+                    }
+                },
+                "BY": {
+                    "block": {
+                        "type": "math_number",
+                        "fields": {
+                            "NUM": 1
+                        }
+                    }
+                }
+            }
+        },
         { kind: "block", type: "controls_forEach" },
         { kind: "block", type: "controls_flow_statements" },
       ]
@@ -69,6 +101,7 @@ const toolboxCategories = {
     {
       kind: "category",
       name: "Variables",
+      colour: "#A65C81",
       custom: "VARIABLE"
     },
     {
@@ -76,8 +109,66 @@ const toolboxCategories = {
       name: "Figma",
       colour: "#1ABCFE",
       contents: [
-        { kind: "block", type: "log" },
-        { kind: "block", type: "createRect" },
+        { 
+          kind: "block",
+          type: "log",
+          "inputs": {
+                "NAME": {
+                    "block": {
+                        "type": "text",
+                        "fields": {
+                            "TEXT": ""
+                        }
+                    }
+                }
+            }
+        },
+        { 
+          kind: "block", 
+          type: "createRect",
+          inputs: {
+            NAME: {
+              block: {
+                  type: "text",
+                  fields: {
+                      TEXT: "Rectangle 1"
+                  }
+              }
+            },
+            X: {
+              block: { 
+                type: "math_number", 
+                fields: { "NUM": 200} 
+              }
+            },
+            Y: {
+              block: { 
+                type: "math_number", 
+                fields: { "NUM": -250} 
+              }
+            },
+            W: {
+              block: { 
+                type: "math_number", 
+                fields: { "NUM": 20} 
+              }
+            },
+            H: {
+              block: { 
+                type: "math_number", 
+                fields: { "NUM": 20} 
+              }
+            },
+            FILL: {
+              block: {
+                  type: "text",
+                  fields: {
+                      TEXT: "#FF0000FF"
+                  }
+              }
+            },
+          }
+        },
       ],
     },
   ],

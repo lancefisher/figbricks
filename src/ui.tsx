@@ -41,6 +41,7 @@ function Plugin() {
   }, [])
 
   const handleRunClick = useCallback(() => {
+    console.log(Blockly.serialization.workspaces.save(Blockly.getMainWorkspace()))
     emit<InsertCodeHandler>('INSERT_CODE', code)
   }, [code])
 
@@ -63,7 +64,7 @@ function Plugin() {
   return (
     <Container space="medium">
       <Button onClick={handleRunClick}>Run</Button>
-      <div ref={blocklyRef} />
+      <div ref={blocklyRef} style={{width: '610px', height: '480px'}} />
     </Container>
   )
 
