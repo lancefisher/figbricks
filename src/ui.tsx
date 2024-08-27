@@ -45,6 +45,7 @@ function Plugin() {
     toolboxConfiguration: toolboxCategories,
     initialXml: '<xml xmlns="http://www.w3.org/1999/xhtml"></xml>',
     workspaceConfiguration: {
+      trashcan: false,
       grid: {
         spacing: 20,
         length: 3,
