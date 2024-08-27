@@ -14,7 +14,7 @@ import { InsertCodeHandler } from './types'
 
 import { useBlocklyWorkspace } from 'react-blockly'
 import { javascriptGenerator } from 'blockly/javascript';
-import { toolboxCategories } from './blockly-toolbox'
+import { toolboxCategories } from './blockly-config/blockly-toolbox'
 
 function Plugin() {
   function onWindowResize(windowSize: { width: number; height: number }) {

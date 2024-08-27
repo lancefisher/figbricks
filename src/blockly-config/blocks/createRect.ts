@@ -1,32 +1,10 @@
-// @ts-nocheck
+//@ts-nocheck
 import * as Blockly from 'blockly/core';
 import {javascriptGenerator, Order} from 'blockly/javascript';
 
-// See: https://google.github.io/blockly-samples/examples/developer-tools/index.html
-
-// Log
-const log = {
-  init: function() {
-    this.appendValueInput('NAME')
-      .appendField('log');
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setTooltip('');
-    this.setHelpUrl('');
-    this.setColour(225);
-  }
-};
-Blockly.common.defineBlocks({ log: log })
-javascriptGenerator.forBlock['log'] = function(block) {
-  const value_name = javascriptGenerator.valueToCode(block, 'NAME', Order.ATOMIC);
-  const code = `
-  console.log(${value_name});
-  `;
-  return code;
-}
 
 // Create Rect
-const createRect = {
+const createRectBlock = {
   init: function() {
     this.appendValueInput('NAME')
     .setCheck('String')
@@ -53,9 +31,8 @@ const createRect = {
     this.setColour('#1ABCFE');
   }
 };
-Blockly.common.defineBlocks({createRect: createRect});
 
-javascriptGenerator.forBlock['createRect'] = function(block) {
+function createRectGenerator(block) {
   const value_name = javascriptGenerator.valueToCode(block, 'NAME', Order.ATOMIC);
   const value_x = javascriptGenerator.valueToCode(block, 'X', Order.ATOMIC);
   const value_y = javascriptGenerator.valueToCode(block, 'Y', Order.ATOMIC);
@@ -73,3 +50,5 @@ javascriptGenerator.forBlock['createRect'] = function(block) {
   `;
   return code;
 }
+
+export { createRectBlock, createRectGenerator }

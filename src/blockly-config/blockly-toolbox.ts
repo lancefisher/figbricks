@@ -1,5 +1,15 @@
-import './blockly-custom'
+import * as Blockly from 'blockly/core';
+import {javascriptGenerator } from 'blockly/javascript';
+import { logBlock, logGenerator } from './blocks/log';
+import { createRectBlock, createRectGenerator } from './blocks/createRect';
 
+// Create our custom blocks and generators
+Blockly.common.defineBlocks({ log: logBlock })
+javascriptGenerator.forBlock['log'] = logGenerator
+Blockly.common.defineBlocks({createRect: createRectBlock });
+javascriptGenerator.forBlock['createRect'] = createRectGenerator
+
+// Define the blocks and categories in the Blockly Toolbox
 const toolboxCategories = {
   kind: "categoryToolbox",
   contents: [
