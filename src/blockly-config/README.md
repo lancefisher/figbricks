@@ -27,7 +27,7 @@ Then, copy the three code outputs, and place them in the file you just created.
 
 We leave the semicolons and variable naming for easy updates.
 
-However, move the registration of your block to the top of the [./blockly-toolbox.ts]([./blockly-toolbox.ts) file.
+However, move the registration of your block to the top of the [./blockly-toolbox.ts](./blockly-toolbox.ts) file.
 
 e.g. 
 
